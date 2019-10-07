@@ -12,19 +12,24 @@ export class RecipeService {
   
   recipeChanged = new Subject<Recipe[]>();
 
-  private recipes :Recipe[] = [
-    new Recipe("name recipe",
-    "desc recipe",
-    "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Sauteed-Zucchini-Recipe-1-1200.jpg",
-    [new Ingredient("potato",1),new Ingredient("cucumber",1)]),
-    new Recipe("name recipe2",
-    "desc recipe2",
-    "https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg",
-    [new Ingredient("pasta",1),new Ingredient("crevette",10)])
-  ];
+  // private recipes :Recipe[] = [
+  //   new Recipe("name recipe",
+  //   "desc recipe",
+  //   "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Sauteed-Zucchini-Recipe-1-1200.jpg",
+  //   [new Ingredient("potato",1),new Ingredient("cucumber",1)]),
+  //   new Recipe("name recipe2",
+  //   "desc recipe2",
+  //   "https://upload.wikimedia.org/wikipedia/commons/3/39/Recipe.jpg",
+  //   [new Ingredient("pasta",1),new Ingredient("crevette",10)])
+  // ];
+
+   private recipes : Recipe[] = [];
   constructor(private shoplistService : ShoppingListService) { }
 
-  
+  setRecipes(recipes :Recipe[]){
+    this.recipes = recipes;
+    this.recipeChanged.next(this.recipes.slice());
+  }
 
   getRecipe(){
     return this.recipes.slice();
